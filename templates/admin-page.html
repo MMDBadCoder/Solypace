@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+</head>
+<body>
+<div class="ui segment" style="padding: 15px; margin: 15px; background-color: #f4f8fb;;">
+
+    <table class="ui compact celled definition table">
+        <thead class="full-width">
+        <tr>
+            <th>Accept</th>
+            <th>Delete</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>File</th>
+            <th>Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sug_doc in suggested_docs %}
+
+            <tr>
+                <td class="collapsing">
+                    <div class="ui fitted slider checkbox">
+                        <a href="#"><i class="check big green icon"></i></a>
+                    </div>
+                </td>
+                <td class="collapsing">
+                    <div class="ui fitted slider checkbox">
+                        <a href="#"><i class="close big red icon"></i></a>
+                    </div>
+                </td>
+                <td><h3>{{ sug_doc.author_name }}</h3></td>
+                <td><h3>{{ sug_doc.author_email }}</h3></td>
+                <td class="collapsing">
+                    {% if sug_doc.file %}
+                        <a href="{{ sug_doc.file.url }}" target="_blank"><i class="file pdf big red icon"></i></a>
+                    {% endif %}
+                </td>
+                <td class="collapsing">
+                    {% if sug_doc.link %}
+                        <a href="{{ sug_doc.link }}" target="_blank"><i class="dochub big red icon"></i></a>
+                    {% endif %}
+                </td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+        <tfoot class="full-width">
+        <tr>
+            <th></th>
+            <th></th>
+            <th colspan="4">
+                <div class="ui right floated small primary labeled icon button">
+                    <i class="file pdf icon"></i> Add File
+                </div>
+                <button class="ui inverted green button">Accept All</button>
+                <button class="ui inverted red button">Delete All</button>
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+</body>
+</html>
